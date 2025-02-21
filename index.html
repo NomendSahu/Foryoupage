@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Special Message for You ❤️</title>
+    <style>
+        body {
+            background: linear-gradient(to right, #ff9a9e, #fad0c4);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+        }
+        h1, p {
+            color: #fff;
+            text-align: center;
+        }
+        h1 {
+            font-size: 3rem;
+            animation: fadeIn 2s ease-in-out;
+        }
+        p {
+            font-size: 1.5rem;
+            margin: 20px 0;
+        }
+        .heart {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            position: relative;
+            transform: rotate(-45deg);
+            animation: beat 1s infinite;
+        }
+        .heart::before, .heart::after {
+            content: "";
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            border-radius: 50%;
+            position: absolute;
+        }
+        .heart::before {
+            top: -50px;
+            left: 0;
+        }
+        .heart::after {
+            left: 50px;
+            top: 0;
+        }
+        @keyframes beat {
+            0%, 100% { transform: scale(1) rotate(-45deg); }
+            50% { transform: scale(1.1) rotate(-45deg); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        button {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 30px;
+            background-color: #ff6f91;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 20px;
+            position: relative;
+        }
+        button:hover {
+            background-color: #ff4e73;
+        }
+        .message-box {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            animation: fadeIn 1.5s forwards;
+        }
+    </style>
+</head>
+<body>
+    <h1>Hey, I have something special to tell you... 💖</h1>
+    <div class="heart"></div>
+    <button id="revealBtn">Click to Reveal 💌</button>
+    <div class="message-box" id="messageBox">
+        <h1>Will you be mine? ❤️</h1>
+        <button id="yesBtn">Yes, of course! 😍</button>
+        <button id="noBtn">No 🙈</button>
+    </div>
+
+    <audio id="bgMusic" src="Yeh song.mp3.mp3" preload="auto"></audio>
+
+    <script>
+        const revealBtn = document.getElementById('revealBtn');
+        const messageBox = document.getElementById('messageBox');
+        const yesBtn = document.getElementById('yesBtn');
+        const noBtn = document.getElementById('noBtn');
+        const bgMusic = document.getElementById('bgMusic');
+
+        revealBtn.addEventListener('click', function() {
+            revealBtn.style.display = 'none';
+            messageBox.style.display = 'flex';
+        });
+
+        yesBtn.addEventListener('click', function() {
+            messageBox.innerHTML = '<h1>Thank you! You made my day! 💖✨</h1><p>With love, Sahil 💌</p>';;
+            bgMusic.play();
+        });
+
+        noBtn.addEventListener('mouseover', function() {
+            const x = Math.floor(Math.random() * window.innerWidth - 100);
+            const y = Math.floor(Math.random() * window.innerHeight - 100);
+            noBtn.style.position = 'absolute';
+            noBtn.style.left = `${x}px`;
+            noBtn.style.top = `${y}px`;
+        });
+    </script>
+</body>
+</html>
